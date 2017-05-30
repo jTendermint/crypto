@@ -39,14 +39,10 @@ import com.github.jtendermint.crypto.ByteUtil.ByteFormat;
  *
  * @author wolfposd
  */
-public class RipeMD160 {
+public class RipeMD160 implements HashFunction{
 
     static {
         Security.addProvider(new BouncyCastleProvider());
-    }
-
-    private RipeMD160() {
-        // only static usage
     }
 
     /**
@@ -122,6 +118,11 @@ public class RipeMD160 {
      */
     public static String hashTxToStringBytes(byte[] tx) {
         return ByteUtil.toString00(hashTx(tx));
+    }
+
+    @Override
+    public byte[] hashBytes(byte[] byteArray) {
+        return hash(byteArray);
     }
 
 }
