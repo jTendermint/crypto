@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  * 
- * Copyright (c) 2017
+ * Copyright (c) 2017 - 2018
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -98,7 +98,7 @@ public class RipeMD160 implements HashFunction{
         BigInteger bigInt = BigInteger.valueOf(length);
         byte[] lengthlength = bigInt.toByteArray();
 
-        byte b = new Integer(length).byteValue();
+        byte b = Integer.valueOf(length).byteValue();
 
         ByteBuffer buff = ByteBuffer.allocate(1 + lengthlength.length + tx.length);
 
