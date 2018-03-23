@@ -23,9 +23,6 @@
  */
 package com.github.jtendermint.crypto;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.math.BigInteger;
 import java.nio.ByteBuffer;
 
 /**
@@ -109,22 +106,13 @@ public final class ByteUtil {
         return builder.toString().toUpperCase();
     }
 
-    public static void writeWithVarint(byte[] bytes, ByteArrayOutputStream bos) throws IOException {
-        // TODO do we have to consider this 0-length varint anywhere else?
-        if (bytes == null) {
-            bytes = new byte[0];
-        }
-        long length = bytes.length;
-        byte[] varint = BigInteger.valueOf(length).toByteArray();
-        long varintLength = varint.length;
-        byte[] varintPrefix = BigInteger.valueOf(varintLength).toByteArray();
-        bos.write(varintPrefix);
-        if (bytes.length > 0) {
-            bos.write(varint);
-            bos.write(bytes);
-        }
-    }
-
+    /**
+     * Parses a byte-array-string into an actual byte[]
+     * 
+     * @param string00
+     *            must be in form of "00AAFF11"
+     * @return the byte[] representation of the input string
+     */
     public static byte[] fromString00(String string00) {
         int len = string00.length();
         byte[] data = new byte[len / 2];

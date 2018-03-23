@@ -6,6 +6,11 @@
 	<groupId>com.github.jtendermint</groupId>
 	<artifactId>crypto</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
 	
 	<build>
 		<plugins>
@@ -26,6 +31,14 @@
 			<groupId>org.bouncycastle</groupId>
 			<artifactId>bcprov-jdk15on</artifactId>
 			<version>1.59</version>
+		</dependency>
+        
+        <!-- Testing -->
+        	<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+            <scope>test</scope>
 		</dependency>
 	</dependencies>
 </project>
