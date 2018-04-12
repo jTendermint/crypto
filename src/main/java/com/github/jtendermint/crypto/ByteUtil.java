@@ -1,18 +1,18 @@
 /*
  * The MIT License (MIT)
- * 
+ *
  * Copyright (c) 2017 - 2018
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,9 +26,8 @@ package com.github.jtendermint.crypto;
 import java.nio.ByteBuffer;
 
 /**
- * 
  * Byte Util class for conversion to Tendermint formats
- * 
+ *
  * @author wolfposd
  */
 public final class ByteUtil {
@@ -43,9 +42,11 @@ public final class ByteUtil {
 
     /**
      * Converts an integer into a byte-array
-     * 
+     *
      * @param value
-     * @return
+     *         the value to convert into a byteArray
+     *
+     * @return the non-null byteArray representing the int value
      */
     public static byte[] toBytes(int value) {
         return ByteBuffer.allocate(4).putInt(value).array();
@@ -53,29 +54,31 @@ public final class ByteUtil {
 
     /**
      * Writes a bytearray into a string with specified byteformat
-     * 
+     *
      * @param bArr
-     *            target array
+     *         target array
      * @param format
-     *            target format
+     *         target format
+     *
      * @return formatted string
      */
     public static String toString(byte[] bArr, ByteFormat format) {
         switch (format) {
-        case FORMAT_00:
-            return toString00(bArr);
-        case FORMAT_0x00:
-        default:
-            return toString0x00(bArr);
+            case FORMAT_00:
+                return toString00(bArr);
+            case FORMAT_0x00:
+            default:
+                return toString0x00(bArr);
         }
     }
 
     /**
      * Formats the byte array into separated 0x00 blocks <br>
      * [ca,fe,ba,be] =&gt; 0xca 0xfe 0xba 0xbe
-     * 
-     * @param bArr
-     * @return formatted string
+     *
+     * @param bArr the array to create the Hex-representation for. May be null
+     *
+     * @return formatted string or null if the given byteArray was null
      */
     public static String toString0x00(byte[] bArr) {
         if (bArr == null)
@@ -91,9 +94,11 @@ public final class ByteUtil {
     /**
      * Formats the byte array into uppercase blocks <br>
      * [ca,fe,ba,be] =&gt; CAFEBABE
-     * 
+     *
      * @param bArr
-     * @return formatted string
+     *         the array to create the Hex-representation for. May be null
+     *
+     * @return formatted string or null if the given byteArray was null
      */
     public static String toString00(byte[] bArr) {
         if (bArr == null)
@@ -108,9 +113,10 @@ public final class ByteUtil {
 
     /**
      * Parses a byte-array-string into an actual byte[]
-     * 
+     *
      * @param string00
-     *            must be in form of "00AAFF11"
+     *         must be in form of "00AAFF11"
+     *
      * @return the byte[] representation of the input string
      */
     public static byte[] fromString00(String string00) {
